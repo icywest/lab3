@@ -1,0 +1,276 @@
+/* General Styles */
+/* it's cyn-made, ofc it's pink ;) */ 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffe4e1; /* Light pink background */
+  margin: 0;
+  padding: 20px;
+}
+
+/* Main Container */
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+/* Blog Post Card */
+.post-card {
+  background: #ffebef; /* Soft pink */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+}
+
+.post-card h2 {
+  margin-bottom: 10px;
+  color: #d63384; /* Dark pink */
+}
+
+.post-content {
+  font-size: 16px;
+  color: #333;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Comments Section */
+.comments-container {
+  margin-top: 15px;
+  padding: 10px;
+  background: #ffe4e9; /* Light pink */
+  border-radius: 5px;
+}
+
+.comments-container h3 {
+  margin-bottom: 10px;
+}
+
+.comment {
+  padding: 8px;
+  border-bottom: 1px solid #ffbad2;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.comment .author {
+  font-weight: bold;
+  color: #d63384;
+}
+
+.no-comments {
+  font-style: italic;
+  color: #777;
+}
+
+/* Delete Comment Button */
+.delete-btn {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background: #e63956;
+}
+
+/* Comment Form */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ffbad2;
+  border-radius: 5px;
+}
+
+.comment-form .btn {
+  background: #ff4d6d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.comment-form .btn:hover {
+  background: #e63956;
+}
+
+/* Login Message */
+.login-message {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.login-message a {
+  color: #d63384;
+  text-decoration: none;
+}
+
+.login-message a:hover {
+  text-decoration: underline;
+}
+
+/* No Posts Message */
+.no-posts {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Add Post Section */
+.add-post h3 {
+  margin-bottom: 10px;
+  color: #d63384;
+}
+
+.add-post form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-post input,
+.add-post textarea,
+.add-post select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ffbad2;
+  border-radius: 5px;
+}
+
+.add-post button {
+  background: #ff4d6d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-post button:hover {
+  background: #e63956;
+}
+
+/* Posts List */
+.posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  background: #ffebef;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-header h3 {
+  margin: 0;
+}
+
+.post-status {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  background: #ff4d6d;
+}
+
+/* Action Buttons */
+.post-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background: #ff85a2;
+  color: black;
+}
+
+.edit-btn:hover {
+  background: #ff4d6d;
+}
+
+.delete-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e63956;
+}
+
+/* Edit Form*/
+.edit-form {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  background: #ffe4e9;
+  border-radius: 5px;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ffbad2;
+  border-radius: 5px;
+}
+
+.save-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #e63956;
+}
+
+/* No Posts Message */
+.no-posts {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}

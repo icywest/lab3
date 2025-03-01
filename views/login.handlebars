@@ -1,0 +1,11 @@
+<h1>Login / Sign Up</h1>
+{{#if error}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+
+<form action="/auth/login" method="POST">
+    <label>Username: <input type="text" name="username" required></label>
+    <label>Password: <input type="password" name="password" required></label>
+    <button type="submit" name="action" value="login">Login</button>
+    <button type="submit" name="action" value="signup">Sign Up</button>
+</form>

@@ -1,0 +1,21 @@
+{
+  "name": "mt_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch --env-file=.env server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "icywest",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.1",
+    "express-sessions": "^1.0.6"
+  }
+}

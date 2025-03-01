@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "postId": 1,
+    "username": "icywest",
+    "content": "hopla"
+  },
+  {
+    "id": 3,
+    "postId": 2,
+    "username": "icywest",
+    "content": "si"
+  },
+  {
+    "id": 5,
+    "postId": 2,
+    "username": "Patrick",
+    "content": "okokok"
+  },
+  {
+    "id": 6,
+    "postId": 10,
+    "username": "admin",
+    "content": "increible"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Hello World",
+    "content": "Just testing this out!",
+    "author": "icywest",
+    "status": "published"
+  },
+  {
+    "id": 2,
+    "title": "Coffee Time",
+    "content": "Nothing beats a good coffee.",
+    "author": "icywest",
+    "status": "published"
+  },
+  {
+    "id": 3,
+    "title": "Quick Thought",
+    "content": "Life is short, smile more.",
+    "author": "icywest",
+    "status": "published"
+  },
+  {
+    "id": 4,
+    "title": "Hidden Post",
+    "content": "This should not be visible.",
+    "author": "icywest",
+    "status": "draft"
+  },
+  {
+    "id": 5,
+    "title": "Late Night Coding",
+    "content": "Bugs love midnight debugging.",
+    "author": "icywest",
+    "status": "published"
+  },
+  {
+    "id": 6,
+    "title": "Weekend Vibes",
+    "content": "Finally some time to relax!",
+    "author": "icywest",
+    "status": "published"
+  },
+  {
+    "id": 7,
+    "title": "hello!!",
+    "content": "world c:",
+    "author": "icywest",
+    "authorId": 1,
+    "status": "published"
+  },
+  {
+    "id": 8,
+    "title": "hola",
+    "content": "asdasdasda",
+    "author": "Patrick",
+    "authorId": 2,
+    "status": "published"
+  },
+  {
+    "id": 10,
+    "title": "Terminar el midterm ",
+    "content": "Fue horrible, tengo traumas!!!",
+    "author": "icywest",
+    "authorId": 1,
+    "status": "published"
+  }
+]
