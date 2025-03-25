@@ -2,20 +2,39 @@
   "name": "mt_project",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "description": "",
   "scripts": {
     "dev": "node --watch --env-file=.env server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+
   },
   "keywords": [],
   "author": "icywest",
   "license": "ISC",
-  "type": "module",
-  "description": "",
   "dependencies": {
+    "@faker-js/faker": "^9.6.0",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
-    "express-sessions": "^1.0.6"
+    "express-sessions": "^1.0.6",
+    "express-validator": "^7.2.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.12.1",
+    "mysql2": "^3.13.0",
+    "node-fetch": "^3.3.2",
+    "sequelize": "^6.37.6"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
+

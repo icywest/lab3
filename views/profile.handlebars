@@ -3,48 +3,77 @@
 <div class="profile-container">
   <div class="add-post">
     <h3>Create a New Post</h3>
-    <form action="/posts/add" method="POST">
+    <form action="/posts/post/{{userId}}" method="POST">
       <input type="text" name="title" placeholder="Title" required>
       <textarea name="content" placeholder="Write something..." required></textarea>
-      <select name="status">
-        <option value="draft">Draft</option>
-        <option value="published">Published</option>
-      </select>
+      
       <button type="submit" class="btn">Add Post</button>
     </form>
   </div>
 
   <hr>
 
-  {{#if posts.length}}
+<form action="/profile/{{userId}}" method="GET">
+  <input type="text" name="search" placeholder="Search posts..." value="{{searchQuery}}">
+  <input type="hidden" name="sort" value="{{sortOption}}">
+  <button type="submit">Search</button>
+</form>
+
+<hr>
+
+<form action="/profile/{{userId}}" method="GET">
+  <label for="sort">Sort By:</label>
+  <select name="sort" id="sort" onchange="this.form.submit()">
+    <option value="default">Select</option>
+    <option value="title-asc" {{#if (eq sortOption "title-asc")}}selected{{/if}}>Title (A-Z)</option>
+    <option value="title-desc" {{#if (eq sortOption "title-desc")}}selected{{/if}}>Title (Z-A)</option>
+  </select>
+  <input type="hidden" name="search" value="{{searchQuery}}">
+</form>
+<hr>
+<hr>
+<form action="/profile/{{userId}}" method="GET">
+  <button type="submit" class="btn reset-btn">Reset</button>
+</form>
+</hr>
+
+  {{#if posts}}
     <ul class="posts-list">
       {{#each posts}}
         <li class="post-item">
           <div class="post-header">
             <h3>{{this.title}}</h3>
-            <span class="post-status">{{this.status}}</span>
           </div>
           <p class="post-content">{{this.content}}</p>
 
           <!-- Botones de acciones -->
           <div class="post-actions">
             <button class="btn edit-btn" onclick="showEditForm('{{this.id}}')">Edit</button>
-            <form action="/posts/delete/{{this.id}}" method="POST">
+            <form action="/posts/post/{{userId}}/{{this.id}}?_method=DELETE" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
               <button type="submit" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
             </form>
           </div>
-          <form id="edit-form-{{this.id}}" action="/posts/update/{{this.id}}" method="POST" class="edit-form">
+          <form id="edit-form-{{this.id}}" action="/posts/post/{{userId}}/{{this.id}}?_method=PUT" method="POST" class="edit-form">
             <input type="text" name="title" value="{{this.title}}" required>
             <textarea name="content" required>{{this.content}}</textarea>
-            <select name="status">
-              <option value="draft" {{#if (eq this.status "draft")}}selected{{/if}}>Draft</option>
-              <option value="published" {{#if (eq this.status "published")}}selected{{/if}}>Published</option>
-            </select>
             <button type="submit" class="btn save-btn">Save</button>
           </form>
         </li>
       {{/each}}
     </ul>
+    <div class="pagination">
+  {{#if (gt page 1)}}
+    <a href="?search={{searchQuery}}&sort={{sortOption}}&page={{subtract page 1}}" class="btn">Previous</a>
+  {{/if}}
+
+  <span>Page {{page}} of {{totalPages}}</span>
+
+  {{#if (lt page totalPages)}}
+    <a href="?search={{searchQuery}}&sort={{sortOption}}&page={{add page 1}}" class="btn">Next</a>
+  {{/if}}
+</div>
+
   {{else}}
     <p class="no-posts">You haven't written any posts yet.</p>
   {{/if}}

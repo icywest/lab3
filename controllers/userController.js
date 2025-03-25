@@ -1,37 +1,24 @@
-import fs from "fs";
+import User from "../models/User.js";
 
-const usersFilePath = "./models/users.json";
-const userSession = "./models/session.json";
-
-export const loadUsers = () => {
-  try {
-    return JSON.parse(fs.readFileSync(usersFilePath, "utf8"));
-  } catch (error) {
-    return [];
-  }
+export const findUserByUsername = async (username) => {
+  return await User.findOne({ where: { username } });
 };
 
-export const saveUsers = (users) => {
-  fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+export const findUserById = async (userId) => {
+  return await User.findByPk(userId);
 };
 
-export const logout = () => {
-  fs.writeFileSync(userSession, JSON.stringify({}, null, 2));
+export const addUser = async (username, password) => {
+  return await User.create({ username, password });
 };
 
-export const findUserByUsername = (username) => {
-  return loadUsers().find((user) => user.username === username);
-};
-
-export const findUserById = (userId) => {
-  return loadUsers().find((user) => user.userId === parseInt(userId));
-};
-
-export const addUser = (username, password) => {
-  const users = loadUsers();
-  const userId = users.length ? users[users.length - 1].userId + 1 : 1;
-  const newUser = { userId, username, password };
-  users.push(newUser);
-  saveUsers(users);
-  return newUser;
+export const logout = (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error closing session:", err);
+      return res.status(500).send("Error closing session");
+    }
+    res.clearCookie("connect.sid");
+    res.redirect("/login");
+  });
 };

@@ -1,42 +1,75 @@
-import fs from "fs";
+import Post from "../models/Post.js";
 
-const POSTS_FILE = "./models/posts.json";
-const COMMENTS_FILE = "./models/comments.json";
-
-export function getPublishedPosts() {
+export async function getPosts(req, res) {
   try {
-      if (!fs.existsSync(POSTS_FILE)) {
-          return [];
-      }
-      const data = fs.readFileSync(POSTS_FILE, "utf8");
-      const posts = JSON.parse(data) || [];
-      return posts.filter(post => post.status === "published");
+    const {userId} = req.params;
+    const posts = await Post.findAll({ where: { userId } });
+    res.status(200).json({
+      posts
+    })
   } catch (error) {
-      console.error(error);
-      return [];
+    console.error(error);
+    res.status(500).send("An error occurred while retrieving posts.");
   }
 }
 
-export function getAllPosts() {
-  try {
-    let posts = [];
-    let comments = [];
+export async function addPosts(req, res) {
+  try{
+    const { userId } = req.params;
+    console.log("User: " + userId);
+    const { title, content } = req.body;
 
-    if (fs.existsSync(POSTS_FILE)) {
-      posts = JSON.parse(fs.readFileSync(POSTS_FILE, "utf8")) || [];
-    }
-    if (fs.existsSync(COMMENTS_FILE)) {
-      comments = JSON.parse(fs.readFileSync(COMMENTS_FILE, "utf8")) || [];
-    }
+    console.log("Title: " + title);
+    console.log("Content: " + content);
+    console.log("UserId: " + userId);
 
-    // Agregar los comentarios a cada post
-    posts.forEach((post) => {
-      post.comments = comments.filter((comment) => comment.postId === post.id);
-    });
-
-    return posts;
+    const post = new Post(
+      {
+        title: title,
+        content: content,
+        userId: userId
+      }
+    )
+    await post.save();
+    res.redirect(`/profile/${userId}`);
   } catch (error) {
     console.error(error);
-    return [];
+    res.status(500).send("An error occurred while adding a post.");
+  }
+}
+
+export async function deletePost(req, res) {
+  try {
+    const { userId, postId } = req.params;
+
+    //await Post.destroy({ where: { id: postIdParsed } });
+    await Post.destroy({where: {id: postId}})
+
+    res.redirect(`/profile/${userId}`);
+  }
+  catch(e) {
+    console.error(e);
+    res.status(500).send("An error occurred while deleting a post.");
+  }
+}
+
+export async function updatePost(req, res) {
+  try {
+    const { userId, postId } = req.params;
+    const { title, content } = req.body;
+
+    const post = await Post.findByPk(postId);
+
+    await post.update({
+      title: title,
+      content: content,
+      userId: userId
+    })
+
+    res.redirect(`/profile/${userId}`);
+  }
+  catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while updating a post.");
   }
 }

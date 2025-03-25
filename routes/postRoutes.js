@@ -1,9 +1,16 @@
 import express from "express";
 import fs from "fs";
 import authMiddleware from "../middlewares/authMiddleware.js";
+import { getPosts, addPosts, deletePost, updatePost } from "../controllers/postController.js";
 
-const router = express.Router();
+const postRouter = express.Router();
 const POSTS_FILE = "./models/posts.json";
+
+postRouter.route("/post/:userId/:postId?",)
+.get(getPosts)
+.post(addPosts)
+.put(updatePost)
+.delete(deletePost);
 
 const readPosts = () => {
     if (!fs.existsSync(POSTS_FILE)) return [];
@@ -14,7 +21,7 @@ const savePosts = (posts) => {
     fs.writeFileSync(POSTS_FILE, JSON.stringify(posts, null, 2));
 };
 
-router.post("/add", authMiddleware, (req, res) => {
+postRouter.post("/add", authMiddleware, (req, res) => {
     const { title, content, status } = req.body;
     const user = req.session.user;
 
@@ -39,7 +46,7 @@ router.post("/add", authMiddleware, (req, res) => {
 });
 
 
-router.get("/edit/:id", authMiddleware, (req, res) => {
+postRouter.get("/edit/:id", authMiddleware, (req, res) => {
     const postId = parseInt(req.params.id);
     const post = readPosts().find(p => p.id === postId);
 
@@ -51,7 +58,7 @@ router.get("/edit/:id", authMiddleware, (req, res) => {
 });
 
 
-router.post("/update/:id", authMiddleware, (req, res) => {
+postRouter.post("/update/:id", authMiddleware, (req, res) => {
     const { title, content, status } = req.body;
     const posts = readPosts();
     const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
@@ -68,7 +75,7 @@ router.post("/update/:id", authMiddleware, (req, res) => {
     res.redirect("/");
 });
 
-router.post("/delete/:id", authMiddleware, (req, res) => {
+postRouter.post("/delete/:id", authMiddleware, (req, res) => {
     let posts = readPosts();
     const postIndex = posts.findIndex(p => p.id === parseInt(req.params.id));
 
@@ -83,4 +90,4 @@ router.post("/delete/:id", authMiddleware, (req, res) => {
 });
 
 
-export default router;
+export default postRouter;
